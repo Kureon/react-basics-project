@@ -7,12 +7,14 @@ export const App = () => {
   const [selectedRecipe, setSelectedRecipe] = useState();
 
   return (
-    <div>
-      {selectedRecipe ? (
-        <RecipePage recipe={selectedRecipe} />
-      ) : (
-        <RecipeListPage />
-      )}
-    </div>
+    <>
+      <div>
+        {selectedRecipe ? (
+          <RecipePage recipe={selectedRecipe} />
+        ) : (
+          <RecipeListPage />
+        )}
+      </div>
+    </>
   );
 };

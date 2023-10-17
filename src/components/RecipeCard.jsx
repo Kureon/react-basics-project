@@ -15,6 +15,7 @@ export const RecipeCard = ({
   dishType,
   cautions,
   dietLabels,
+  healthLabels,
 }) => {
   return (
     <Card maxW="m">
@@ -25,6 +26,7 @@ export const RecipeCard = ({
         <Text>{mealType}</Text>
         <Heading size="md">{label}</Heading>
         <Text>Dish: {dishType}</Text>
+
         {dietLabels && (
           <p>
             {dietLabels.map((dietLabel) => (
@@ -32,6 +34,7 @@ export const RecipeCard = ({
             ))}
           </p>
         )}
+
         {cautions && (
           <div>
             <Text>Cautions:</Text>
@@ -40,6 +43,9 @@ export const RecipeCard = ({
             ))}
           </div>
         )}
+
+        {healthLabels.includes("Vegetarian") && <Text>Vegetarian</Text>}
+        {healthLabels.includes("Vegan") && <Text>Vegan</Text>}
       </CardBody>
       <CardFooter></CardFooter>
     </Card>
