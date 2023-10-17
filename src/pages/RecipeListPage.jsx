@@ -22,7 +22,7 @@ export const RecipeListPage = () => {
           .filter((hit) => {
             return search.toLowerCase() === ""
               ? hit.recipe.label
-              : hit.recipe.label.toLowerCase().includes(search);
+              : hit.recipe.label.toLowerCase().includes(search.toLowerCase());
           })
           .map((hit) => (
             <RecipeCard key={hit.recipe.label} {...hit.recipe} />
