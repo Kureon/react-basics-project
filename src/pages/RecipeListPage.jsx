@@ -18,12 +18,14 @@ export const RecipeListPage = () => {
         onChange={(event) => setSearch(event.target.value)}
       />
       <SimpleGrid minChildWidth="300px" gap={6}>
-        {data.hits
-          .filter((hit) => {
-            return search.toLowerCase() === ""
-              ? hit.recipe.label
-              : hit.recipe.label.toLowerCase().includes(search.toLowerCase());
-          })
+        {data.hits.filter((hit) => {
+          const nameMatch = hit.recipe.label.toLowerCase().includes(search.toLowerCase());
+          const healthLabelsMatch = hit.recipe.healthLabels.some(label =>
+            label.toLowerCase().includes(search.toLowerCase())
+          );
+
+          return nameMatch || healthLabelsMatch;
+        })
           .map((hit) => (
             <RecipeCard key={hit.recipe.label} {...hit.recipe} />
           ))}
