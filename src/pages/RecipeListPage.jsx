@@ -5,7 +5,6 @@ import { RecipeCard } from "../components/RecipeCard";
 
 export const RecipeListPage = () => {
   const [search, setSearch] = useState("");
-  console.log(search);
 
   return (
     <>
@@ -18,14 +17,17 @@ export const RecipeListPage = () => {
         onChange={(event) => setSearch(event.target.value)}
       />
       <SimpleGrid minChildWidth="300px" gap={6}>
-        {data.hits.filter((hit) => {
-          const nameMatch = hit.recipe.label.toLowerCase().includes(search.toLowerCase());
-          const healthLabelsMatch = hit.recipe.healthLabels.some(label =>
-            label.toLowerCase().includes(search.toLowerCase())
-          );
+        {data.hits
+          .filter((hit) => {
+            const nameMatch = hit.recipe.label
+              .toLowerCase()
+              .includes(search.toLowerCase());
+            const healthLabelsMatch = hit.recipe.healthLabels.some((label) =>
+              label.toLowerCase().includes(search.toLowerCase())
+            );
 
-          return nameMatch || healthLabelsMatch;
-        })
+            return nameMatch || healthLabelsMatch;
+          })
           .map((hit) => (
             <RecipeCard key={hit.recipe.label} {...hit.recipe} />
           ))}
@@ -33,5 +35,3 @@ export const RecipeListPage = () => {
     </>
   );
 };
-
-// Search filter from: https://www.youtube.com/watch?v=xAqCEBFGdYk

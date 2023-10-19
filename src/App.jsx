@@ -8,13 +8,15 @@ export const App = () => {
 
   return (
     <>
-      <div>
+      {/* <div>
         {selectedRecipe ? (
-          <RecipePage recipe={selectedRecipe} />
+          <RecipePage clickFn={selectedRecipe} />
         ) : (
-          <RecipeListPage />
+          <RecipeListPage clickFn={setSelectedRecipe} />
         )}
-      </div>
+      </div> */}
+
+      <div>{selectedRecipe ? <RecipeListPage /> : <RecipePage />}</div>
     </>
   );
 };

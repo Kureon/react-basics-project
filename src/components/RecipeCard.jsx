@@ -28,11 +28,11 @@ export const RecipeCard = ({
         <Text>Dish: {dishType}</Text>
 
         {dietLabels && (
-          <p>
+          <div>
             {dietLabels.map((dietLabel) => (
               <p key={dietLabel}>{dietLabel}</p>
             ))}
-          </p>
+          </div>
         )}
 
         {cautions && (
