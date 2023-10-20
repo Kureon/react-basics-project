@@ -3,7 +3,7 @@ import { Center, Heading, SimpleGrid, Input } from "@chakra-ui/react";
 import { data } from "../utils/data";
 import { RecipeCard } from "../components/RecipeCard";
 
-export const RecipeListPage = () => {
+export const RecipeListPage = ({ recipeClick }) => {
   const [search, setSearch] = useState("");
 
   return (
@@ -22,6 +22,7 @@ export const RecipeListPage = () => {
             const nameMatch = hit.recipe.label
               .toLowerCase()
               .includes(search.toLowerCase());
+
             const healthLabelsMatch = hit.recipe.healthLabels.some((label) =>
               label.toLowerCase().includes(search.toLowerCase())
             );
@@ -29,7 +30,11 @@ export const RecipeListPage = () => {
             return nameMatch || healthLabelsMatch;
           })
           .map((hit) => (
-            <RecipeCard key={hit.recipe.label} {...hit.recipe} />
+            <RecipeCard
+              key={hit.recipe.label}
+              {...hit.recipe}
+              onClick={recipeClick}
+            />
           ))}
       </SimpleGrid>
     </>

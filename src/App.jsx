@@ -6,17 +6,25 @@ export const App = () => {
   // Your state code here
   const [selectedRecipe, setSelectedRecipe] = useState();
 
+  const recipeClick = (recipe) => {
+    setSelectedRecipe(recipe);
+  };
+
+  const backClick = () => {
+    setSelectedRecipe();
+  };
+
   return (
     <>
-      {/* <div>
+      <div>
         {selectedRecipe ? (
-          <RecipePage clickFn={selectedRecipe} />
+          <RecipePage recipe={selectedRecipe} onClick={backClick} />
         ) : (
-          <RecipeListPage clickFn={setSelectedRecipe} />
+          <RecipeListPage onClick={recipeClick} />
         )}
-      </div> */}
+      </div>
 
-      <div>{selectedRecipe ? <RecipeListPage /> : <RecipePage />}</div>
+      {/* <div>{selectedRecipe ? <RecipeListPage /> : <RecipePage />}</div> */}
     </>
   );
 };
