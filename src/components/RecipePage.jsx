@@ -1,16 +1,13 @@
 import { Image, Heading, Text, Button } from "@chakra-ui/react";
-import { data } from "../utils/data";
 
-export const RecipePage = () => {
-  console.log(data.hits[0].recipe.label);
+export const RecipePage = ({ recipe, clickFn }) => {
   return (
     <>
-      <Button>Back to recipes</Button>
+      <Button clickFn={() => clickFn()}>Back to recipes</Button>
       <div>
-        <img src={data.hits[0].recipe.image} alt={data.hits[0].recipe.label} />
-        {/* <Image src={data.hits.recipe.image} alt={data.hits.recipe.label} />
-        <Text>{data.hits.recipe.mealType}</Text>
-        <Heading>{data.hits.recipe.label}</Heading> */}
+        <Image src={recipe.recipe.image} alt={recipe.recipe.label} />
+        <Text>{recipe.recipe.mealType}</Text>
+        <Heading>{recipe.recipe.label}</Heading>
       </div>
     </>
   );

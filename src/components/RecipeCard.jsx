@@ -9,7 +9,8 @@ import {
 } from "@chakra-ui/react";
 
 export const RecipeCard = ({
-  recipeClick,
+  recipe,
+  clickFn,
   label,
   image,
   mealType,
@@ -19,7 +20,7 @@ export const RecipeCard = ({
   healthLabels,
 }) => {
   return (
-    <Card maxW="m" onClick={recipeClick}>
+    <Card maxW="m" onClick={() => clickFn(recipe)}>
       <CardBody>
         <AspectRatio ratio={16 / 9}>
           <Image src={image} alt={label} borderRadius="lg" />

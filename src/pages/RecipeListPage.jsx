@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Center, Heading, SimpleGrid, Input } from "@chakra-ui/react";
-import { data } from "../utils/data";
 import { RecipeCard } from "../components/RecipeCard";
 
-export const RecipeListPage = ({ recipeClick }) => {
+export const RecipeListPage = ({ recipes, clickFn }) => {
   const [search, setSearch] = useState("");
 
   return (
@@ -17,23 +16,23 @@ export const RecipeListPage = ({ recipeClick }) => {
         onChange={(event) => setSearch(event.target.value)}
       />
       <SimpleGrid minChildWidth="300px" gap={6}>
-        {data.hits
-          .filter((hit) => {
-            const nameMatch = hit.recipe.label
+        {recipes
+          .filter((recipe) => {
+            const nameMatch = recipe.recipe.label
               .toLowerCase()
               .includes(search.toLowerCase());
 
-            const healthLabelsMatch = hit.recipe.healthLabels.some((label) =>
+            const healthLabelsMatch = recipe.recipe.healthLabels.some((label) =>
               label.toLowerCase().includes(search.toLowerCase())
             );
 
             return nameMatch || healthLabelsMatch;
           })
-          .map((hit) => (
+          .map((recipe) => (
             <RecipeCard
-              key={hit.recipe.label}
-              {...hit.recipe}
-              onClick={recipeClick}
+              key={recipe.recipe.label}
+              {...recipe.recipe}
+              clickFn={clickFn}
             />
           ))}
       </SimpleGrid>

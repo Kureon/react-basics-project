@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { data } from "./utils/data";
 import { RecipeListPage } from "./pages/RecipeListPage";
 import { RecipePage } from "./components/RecipePage";
 
@@ -6,25 +7,15 @@ export const App = () => {
   // Your state code here
   const [selectedRecipe, setSelectedRecipe] = useState();
 
-  // const recipeClick = (recipe) => {
-  //   setSelectedRecipe(recipe);
-  // };
-
-  // const backClick = () => {
-  //   setSelectedRecipe();
-  // };
-
   return (
     <>
-      {/* <div>
+      <div>
         {selectedRecipe ? (
-          <RecipePage recipe={selectedRecipe} onClick={backClick} />
+          <RecipePage recipe={selectedRecipe} clickFn={setSelectedRecipe} />
         ) : (
-          <RecipeListPage onClick={recipeClick} />
+          <RecipeListPage recipes={data.hits} clickFn={setSelectedRecipe} />
         )}
-      </div> */}
-
-      <div>{selectedRecipe ? <RecipeListPage /> : <RecipePage />}</div>
+      </div>
     </>
   );
 };
