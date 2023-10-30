@@ -31,6 +31,7 @@ export const RecipeListPage = ({ recipes, clickFn }) => {
           .map((recipe) => (
             <RecipeCard
               key={recipe.recipe.label}
+              recipe={recipe}
               {...recipe.recipe}
               clickFn={clickFn}
             />
