@@ -6,6 +6,7 @@ import {
   AspectRatio,
   Heading,
   Text,
+  Tag,
 } from "@chakra-ui/react";
 
 export const RecipeCard = ({
@@ -19,35 +20,51 @@ export const RecipeCard = ({
   dietLabels,
   healthLabels,
 }) => {
+  console.log("Cautions Array:", cautions);
+
   return (
     <Card maxW="m" onClick={() => clickFn(recipe)}>
       <CardBody>
         <AspectRatio ratio={16 / 9}>
           <Image src={image} alt={label} borderRadius="lg" />
         </AspectRatio>
-        <Text>{mealType}</Text>
-        <Heading size="md">{label}</Heading>
-        <Text>Dish: {dishType}</Text>
-
+        <Text mt="2" mb="2" textTransform="uppercase">
+          {mealType}
+        </Text>
+        <Heading mt="2" size="md">
+          {label}
+        </Heading>
+        <Text mb="2">Dish: {dishType}</Text>
+        {healthLabels.includes("Vegetarian") && (
+          <Tag m="1" bg="violet">
+            Vegetarian
+          </Tag>
+        )}
+        {healthLabels.includes("Vegan") && (
+          <Tag m="1" bg="violet">
+            Vegan
+          </Tag>
+        )}
         {dietLabels && (
           <div>
             {dietLabels.map((dietLabel) => (
-              <p key={dietLabel}>{dietLabel}</p>
+              <Tag m="1" bg="lightgreen" key={dietLabel}>
+                {dietLabel}
+              </Tag>
             ))}
           </div>
         )}
 
         {cautions && (
           <div>
-            <Text>Cautions:</Text>
+            <Text mt="2">Cautions:</Text>
             {cautions.map((caution) => (
-              <p key={caution}>{caution}</p>
+              <Tag m="1" bg="crimson" key={caution}>
+                {caution}
+              </Tag>
             ))}
           </div>
         )}
-
-        {healthLabels.includes("Vegetarian") && <Text>Vegetarian</Text>}
-        {healthLabels.includes("Vegan") && <Text>Vegan</Text>}
       </CardBody>
       <CardFooter></CardFooter>
     </Card>
