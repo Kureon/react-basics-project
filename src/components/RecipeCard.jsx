@@ -20,7 +20,7 @@ export const RecipeCard = ({
   dietLabels,
   healthLabels,
 }) => {
-  console.log("Cautions Array:", cautions);
+  // console.log("Cautions Array:", cautions);
 
   return (
     <Card maxW="m" onClick={() => clickFn(recipe)}>
